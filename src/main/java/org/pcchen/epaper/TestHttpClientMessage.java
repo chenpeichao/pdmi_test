@@ -17,7 +17,7 @@ import java.security.MessageDigest;
 import java.util.Date;
 
 /**
- * 通过httpclient来验证短信接口
+ * 通过httpclient验证短信接口
  * Created by cpc on 2018/1/5.
  */
 public class TestHttpClientMessage {
