@@ -3,7 +3,7 @@ package org.pcchen.vpn;
 import java.sql.*;
 
 /**
- * 连接uar的vpn
+ * 杩炴帴uar鐨剉pn
  * Created by cpc on 2018/1/5.
  */
 public class ConnVPNJDBC {
@@ -17,9 +17,9 @@ public class ConnVPNJDBC {
 
     public ConnVPNJDBC(String sql) {
         try {
-            Class.forName(name);// 指定连接类型
-            conn = DriverManager.getConnection(url, user, password);// 获取连接
-            pst = conn.prepareStatement(sql);// 准备执行语句
+            Class.forName(name);// 鎸囧畾杩炴帴绫诲瀷
+            conn = DriverManager.getConnection(url, user, password);// 鑾峰彇杩炴帴
+            pst = conn.prepareStatement(sql);// 鍑嗗鎵ц璇彞
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,7 +50,7 @@ public class ConnVPNJDBC {
                 while (rs.next()) {
                     Integer uid = rs.getInt(1);
                     System.out.println("id" + uid);
-                }//显示数据
+                }//鏄剧ず鏁版嵁
                 rs.close();
                 pst2.close();
                 connVpn.close();

@@ -17,7 +17,7 @@ import java.security.MessageDigest;
 import java.util.Date;
 
 /**
- * Í¨¹ıhttpclientÑéÖ¤¶ÌĞÅ½Ó¿Ú
+ * é€šè¿‡httpclientéªŒè¯çŸ­ä¿¡æ¥å£
  * Created by cpc on 2018/1/5.
  */
 public class TestHttpClientMessage {
@@ -26,22 +26,22 @@ public class TestHttpClientMessage {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse response = null;
         String url = "http://211.159.160.110/admin/message/read";
-        //·â×°ÇëÇó²ÎÊı
+        //å°è£…è¯·æ±‚å‚æ•°
 
         String encodeParam = "appid=first&content=second&mobile=third&timestamp=forth";
         encodeParam=encodeParam.replace("first", "b228f669d036c1ab00c1a3efeec47657ac600c77");
-        encodeParam=encodeParam.replace("second", URLEncoder.encode("²âÊÔ³ÌĞò", "utf-8"));
+        encodeParam=encodeParam.replace("second", URLEncoder.encode("æµ‹è¯•ç¨‹åº", "utf-8"));
         encodeParam=encodeParam.replace("third","17602987789");
         encodeParam=encodeParam.replace("forth", time);
 
         String md5 = getMD5("chinasoftipdmi" + URLEncoder.encode(encodeParam, "utf-8").toLowerCase()+ "chinasoftipdmi");
         String str = "";
         try {
-            //´´½¨GetÇëÇó
-            HttpGet httpGet = new HttpGet(url+"?"+"appid=b228f669d036c1ab00c1a3efeec47657ac600c77&content=²âÊÔ³ÌĞò&mobile=17602987789&timestamp="+time+"&sign="+ md5.toLowerCase() +"");
-            //Ö´ĞĞGetÇëÇó£¬
+            //åˆ›å»ºGetè¯·æ±‚
+            HttpGet httpGet = new HttpGet(url+"?"+"appid=b228f669d036c1ab00c1a3efeec47657ac600c77&content=æµ‹è¯•ç¨‹åº&mobile=17602987789&timestamp="+time+"&sign="+ md5.toLowerCase() +"");
+            //æ‰§è¡ŒGetè¯·æ±‚ï¼Œ
             response = httpClient.execute(httpGet);
-            //µÃµ½ÏìÓ¦Ìå
+            //å¾—åˆ°å“åº”ä½“
             HttpEntity entity = response.getEntity();
             if(entity != null){
                 String result= EntityUtils.toString(response.getEntity(),"utf-8");
@@ -50,7 +50,7 @@ public class TestHttpClientMessage {
 //                JsonObject jo = (JsonObject) new JsonParser().parse(result);
 //                String statue = jo.get("statue").getAsString();
 //                System.out.println("statue==" + statue);
-//                //Õı³£ÇëÇó£¬½á¹û²ğ×°
+//                //æ­£å¸¸è¯·æ±‚ï¼Œç»“æœæ‹†è£…
 //                JsonObject asJsonObject = jo.get("result").getAsJsonObject();
 //                String content = asJsonObject.get("content").getAsString();
 //                String mobile = asJsonObject.get("mobile").getAsString();
@@ -61,19 +61,19 @@ public class TestHttpClientMessage {
 //                System.out.println(ctime);
 //                System.out.println(res);
 //                if("1".equals(statue)) {
-//                    System.out.println("ÕıÈ·Êä³ö");
+//                    System.out.println("æ­£ç¡®è¾“å‡º");
 //                } else {
-//                    System.out.println("Òì³£Êä³ö");
+//                    System.out.println("å¼‚å¸¸è¾“å‡º");
 //                }
             } else {
-                System.out.println("Òì³£Êä³ö");
+                System.out.println("å¼‚å¸¸è¾“å‡º");
             }
         } catch (ParseException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally{
-            //ÏûºÄÊµÌåÄÚÈİ
+            //æ¶ˆè€—å®ä½“å†…å®¹
             if(response != null){
                 try {
                     response.close();
@@ -81,7 +81,7 @@ public class TestHttpClientMessage {
                     e.printStackTrace();
                 }
             }
-            //¹Ø±ÕÏàÓ¦ ¶ªÆúhttpÁ¬½Ó
+            //å…³é—­ç›¸åº” ä¸¢å¼ƒhttpè¿æ¥
             if(httpClient != null){
                 try {
                     httpClient.close();
@@ -94,21 +94,21 @@ public class TestHttpClientMessage {
 
 
 
-    //Éú³ÉMD5
+    //ç”ŸæˆMD5
     public static String getMD5(String message) {
         String md5 = "";
         try {
-            MessageDigest md = MessageDigest.getInstance("MD5");  // ´´½¨Ò»¸ömd5Ëã·¨¶ÔÏó
+            MessageDigest md = MessageDigest.getInstance("MD5");  // åˆ›å»ºä¸€ä¸ªmd5ç®—æ³•å¯¹è±¡
             byte[] messageByte = message.getBytes("UTF-8");
-            byte[] md5Byte = md.digest(messageByte);              // »ñµÃMD5×Ö½ÚÊı×é,16*8=128Î»
-            md5 = bytesToHex(md5Byte);                            // ×ª»»Îª16½øÖÆ×Ö·û´®
+            byte[] md5Byte = md.digest(messageByte);              // è·å¾—MD5å­—èŠ‚æ•°ç»„,16*8=128ä½
+            md5 = bytesToHex(md5Byte);                            // è½¬æ¢ä¸º16è¿›åˆ¶å­—ç¬¦ä¸²
         } catch (Exception e) {
             e.printStackTrace();
         }
         return md5;
     }
 
-    // ¶ş½øÖÆ×ªÊ®Áù½øÖÆ
+    // äºŒè¿›åˆ¶è½¬åå…­è¿›åˆ¶
     public static String bytesToHex(byte[] bytes) {
         StringBuffer hexStr = new StringBuffer();
         int num;

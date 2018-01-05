@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * ¶Ô¶ÌĞÅÄÚÈİ·µ»ØÖµ½øĞĞ½âÎö
+ * å¯¹çŸ­ä¿¡å†…å®¹è¿”å›å€¼è¿›è¡Œè§£æ
  * Created by cpc on 2018/1/5.
  */
 public class ParseResultJson {
@@ -16,7 +16,7 @@ public class ParseResultJson {
         JsonObject jo = (JsonObject) new JsonParser().parse(result);
         String statue = jo.get("statue").getAsString();
         System.out.println("statue==" + statue);
-        //Õı³£ÇëÇó
+        //æ­£å¸¸è¯·æ±‚
         JsonObject asJsonObject = jo.get("result").getAsJsonObject();
         String content = asJsonObject.get("content").getAsString();
         String mobile = asJsonObject.get("mobile").getAsString();
@@ -27,9 +27,9 @@ public class ParseResultJson {
         System.out.println(ctime);
         System.out.println(res);
         if("1".equals(statue)) {
-            System.out.println("ÕıÈ·Êä³ö");
+            System.out.println("æ­£ç¡®è¾“å‡º");
         } else {
-            System.out.println("Òì³£Êä³ö");
+            System.out.println("å¼‚å¸¸è¾“å‡º");
         }
     }
 }
